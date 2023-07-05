@@ -1,49 +1,84 @@
 {
-  description = "Devops ETH2 Project";
+  description = "Etherno IaC Project";
 
-  inputs = {nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";};
-
-  outputs = {
-    self,
-    nixpkgs,
-  }: let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {inherit system;};
-    google-env = pkgs.google-cloud-sdk.withExtraComponents [pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin];
-    python-env =
-      pkgs.python3.withPackages
-      (p: with p; [yamlfix plumbum black python-lsp-server jmespath pyopenssl google-cloud-storage]);
-  in {
-    devShells.${system}.default = pkgs.mkShell {
-      packages = with pkgs; [
-        awscli2
-        ansible
-        ansible-lint
-        bash
-        google-env
-        k9s
-        kubectl
-        kubectx
-        kubernetes-helm
-        kubie
-        nixfmt
-        packer
-        python-env
-        shellcheck
-        terraform
-        terragrunt
-        yaml-language-server
-        yamllint
-      ];
-      shellHook = ''
-        export DEVOPS_ETH2=`pwd`
-        export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-        export KUBECONFIG=`pwd`/infra/.secrets/kubernetes/config
-        export CLOUDSDK_CONFIG=`pwd`/infra/.secrets/gcloud
-        export GOOGLE_APPLICATION_CREDENTIALS=`pwd`/infra/.secrets/gcloud/application_default_credentials.json
-        export AWS_CONFIG_FILE=`pwd`/infra/.secrets/aws/config
-        export AWS_SHARED_CREDENTIALS_FILE=`pwd`/infra/.secrets/aws/credentials
-      '';
-    };
+  nixConfig = {
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+      "https://colmena.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "colmena.cachix.org-1:7BzpDnjjH8ki2CT3f6GdOk7QAzPOl+1t3LvTLXqYcSg="
+    ];
   };
+  inputs = {
+    # Nix stuff
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-23.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # flake-parts
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+    pre-commit-hooks-nix = {
+      url = "github:hercules-ci/pre-commit-hooks.nix/flakeModule";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Utils
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    statix = {
+      url = "github:nerdypepper/statix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Deploy
+    colmena.url = "github:zhaofengli/colmena";
+
+    # Secrets
+    ragenix = {
+      url = "github:yaxitech/ragenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Packages
+    ethereum-nix.url = "github:nix-community/ethereum.nix";
+  };
+
+  outputs = inputs @ {
+    nixpkgs,
+    flake-parts,
+    ...
+  }: let
+    lib = nixpkgs.lib.extend (final: _: import ./nix/lib final);
+  in
+    flake-parts.lib.mkFlake {
+      inherit inputs;
+      # make custom lib available to parent functions
+      specialArgs = {inherit lib;};
+    }
+    {
+      imports = [
+        # make custom lib available to all `perSystem` functions
+        {_module.args.lib = lib;}
+        ./nix
+        ./nixos
+      ];
+      systems = [
+        "x86_64-linux"
+        "aarch64-darwin"
+      ];
+    };
 }
