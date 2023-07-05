@@ -1,0 +1,14 @@
+# Nix
+.envrc
+.direnv/
+.pre-commit-config.yaml
+result
+
+# Project
+.secrets/
+
+# Terraform
+**/.terraform/*
+
+# nvim
+.session.vim
