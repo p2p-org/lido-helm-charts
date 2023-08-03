@@ -1,0 +1,102 @@
+# Default values for kapi.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# configuration of app
+app:
+  el_node_rpc: "http://localhost:8545/"
+  cl_node_rpc: "http://localhost:3500/"
+
+  mikro_orm_disable_foreign_keys: "true"
+
+  # development or production
+  node_env: "testnet"
+  port: 3000
+
+  cors_whitelist_regexp: ""
+  global_throttle_ttl: "5"
+  global_throttle_limit: "100"
+  global_cache_ttl: "1"
+
+  log_level: "debug"
+  log_format: "json"
+
+  # chain id: mainnet - 1, testnet - 5
+  chain_id: "5"
+
+  provider_json_rpc_max_batch_size: "100"
+  provider_concurrent_requests: "5"
+  provider_batch_aggregation_wait_ms: "10"
+
+  job_interval_registry: "*/5 * * * * *"
+  job_interval_validators_registry: "*/10 * * * * *"
+  validator_registry_enable: "true"
+
+  db_host: "localhost"
+  db_port: "5432"
+  db_name: "keys-api-db"
+  db_user: "keys-api-db"
+
+  # Choose that you need
+  # db_password: ""
+  # db_password_file: ""
+
+# Kubernetes configuration
+replicaCount: 1
+
+labels:
+  app.kubernetes.io/name: lido-kapi
+  app.kubernetes.io/part-of: lidofinance
+
+image:
+  repository: lidofinance/lido-keys-api@sha256
+  pullPolicy: IfNotPresent
+  tag: "76f5a48f0baab46ada3bf4b09bdb115a74803a7ba53e783e505436d8177383dc"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  runAsGroup: 1001
+  runAsUser: 1001
+  seccompProfile:
+    type: RuntimeDefault
+
+securityContext:
+  runAsNonRoot: true
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  # privileged: false
+  readOnlyRootFilesystem: false
+
+serviceAnnotations: {}
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
+
+ingress:
+  enabled: false
+
+resources:
+  limits:
+    memory: 8196Mi
+  requests:
+    cpu: 2
+    memory: 4096Mi
+
+volumes: {}
+
+volumeMounts: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

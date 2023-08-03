@@ -1,0 +1,70 @@
+# Default values for oracle.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# configuration of app
+app:
+  el_node_rpc: "http://localhost:8545/"
+  cl_node_rpc: "http://localhost:3500/"
+
+  prometheus_port: "9000"
+  healthcheck_server_port: "9010"
+  keys_api_uri: "http://kapi"
+
+  # mainnet: 0xC1d0b3DE6792Bf6b4b37EccdcC24e45978Cfd2Eb
+  # goerli:  0x1eDf09b5023DC86737b59dE68a8130De878984f5
+  lido_locator_address: "0x1eDf09b5023DC86737b59dE68a8130De878984f5"
+
+  tx_gas_addition: "100000"
+  allow_reporting_in_bunker_mode: "false"
+  daemon: "false"
+
+# Kubernetes configuration
+replicaCount: 1
+
+labels:
+  app.kubernetes.io/name: lido-oracle
+  app.kubernetes.io/part-of: lidofinance
+
+image:
+  repository: lidofinance/oracle@sha256
+  pullPolicy: IfNotPresent
+  tag: "d2ee5ecc78f8b991fcd2327e1d1bc84b8015aa7b8fde73e5ec0e702e6bec6c86"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  runAsGroup: 1001
+  runAsUser: 1001
+  seccompProfile:
+    type: RuntimeDefault
+
+securityContext:
+  runAsNonRoot: true
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  privileged: false
+  readOnlyRootFilesystem: false
+
+service:
+  type: ClusterIP
+  port: 9010
+
+resources:
+  limits:
+    memory: 6144Mi
+  requests:
+    cpu: 1
+    memory: 4096Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
