@@ -6,6 +6,8 @@ result
 
 # Project
 .secrets/
+temp/
+**/secrets-store.yaml
 
 # Terraform
 **/.terraform/*
