@@ -1,0 +1,75 @@
+# Default values for council.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# configuration of app
+app:
+  el_node_rpc: "http://localhost:8545/"
+
+  port: "3000"
+  log_level: "debug"
+  log_format: "json"
+
+  # kapi
+  keys_api_host: "http://localhost"
+  keys_api_port: "80"
+
+  # RabbitMQ
+  pubsub_service: "rabbitmq"
+  rabbitmq_login: ""
+  rabbitmq_url: "wss://dsm-03c0383ead244e64b948.testnet.fi:443/ws"
+  # set that you need
+  # rabbitmq_passcode:
+  # rabbitmq_passcode_file:
+
+  # Wallet
+  # set that you need
+  # wallet_private_key: ""
+  # wallet_private_key_file: ""
+
+# Kubernetes configuration
+replicaCount: 1
+
+image:
+  repository: lidofinance/lido-council-daemon@sha256
+  pullPolicy: IfNotPresent
+  tag: "42ece4c9484aac0ee192a72407f149cb062305596c0c6b5bb0a91a7b8f4bb3db"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  runAsGroup: 1001
+  runAsUser: 1001
+  seccompProfile:
+    type: RuntimeDefault
+  fsGroup: 1001
+
+securityContext:
+  runAsNonRoot: true
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  privileged: false
+  readOnlyRootFilesystem: false
+
+service:
+  type: ClusterIP
+  port: 3000
+
+resources:
+  requests:
+    memory: "1024Mi"
+    cpu: "2"
+  limits:
+    memory: "2048Mi"
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
