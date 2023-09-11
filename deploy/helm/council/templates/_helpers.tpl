@@ -50,14 +50,3 @@ app.kubernetes.io/name: {{ include "council.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 app.kubernetes.io/part-of: lidofinance
 {{- end }}
-
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "council.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "council.fullname" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
-{{- end }}
-{{- end }}
