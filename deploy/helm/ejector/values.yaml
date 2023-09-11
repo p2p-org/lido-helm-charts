@@ -2,12 +2,14 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-# configuration of app
+repository: https://github.com/lidofinance/validator-ejector
 
+# configuration of app
 app:
   el_node_rpc: "http://localhost:8545/"
   cl_node_rpc: "http://localhost:3500/"
 
+  # by default set the testnet locator address
   locator_address: "0x1eDf09b5023DC86737b59dE68a8130De878984f5"
   staking_module_id: "1"
 
@@ -46,10 +48,6 @@ app:
 
 # Kubernetes configuration
 replicaCount: 1
-
-labels:
-  app.kubernetes.io/name: lido-ejector
-  app.kubernetes.io/part-of: lidofinance
 
 image:
   repository: lidofinance/validator-ejector@sha256
