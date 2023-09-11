@@ -2,6 +2,8 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+repository: https://github.com/lidofinance/lido-council-daemon
+
 # configuration of app
 app:
   el_node_rpc: "http://localhost:8545/"
@@ -32,7 +34,6 @@ replicaCount: 1
 
 image:
   repository: lidofinance/lido-council-daemon@sha256
-  pullPolicy: IfNotPresent
   tag: "42ece4c9484aac0ee192a72407f149cb062305596c0c6b5bb0a91a7b8f4bb3db"
 
 imagePullSecrets: []
