@@ -10,6 +10,7 @@
         statix.enable = true;
         terraform-format.enable = true;
         deadnix.enable = true;
+        prettier.enable = true;
       };
     };
   };

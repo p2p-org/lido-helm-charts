@@ -10,14 +10,14 @@ app:
 
   locator_address: "0x1eDf09b5023DC86737b59dE68a8130De878984f5"
   staking_module_id: "1"
-  
+
   operator_id: "0"
-  
+
   messages_location: ""
   # use that you need
   # messages_password: ""
   # messages_password_file: ""
-  
+
   oracle_addresses_allowlist: >
     [
       "0x81E411f1BFDa43493D7994F82fb61A415F6b8Fd4",
@@ -88,15 +88,8 @@ resources:
     memory: 1024Mi
 
 volumes: {}
-
 volumeMounts: {}
-
 podAnnotations: {}
-
-resources: {}
-
 nodeSelector: {}
-
 tolerations: []
-
 affinity: {}
