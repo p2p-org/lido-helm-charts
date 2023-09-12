@@ -88,10 +88,6 @@ resources:
     cpu: 2
     memory: 4096Mi
 
-volumes: {}
-
-volumeMounts: {}
-
 nodeSelector: {}
 
 tolerations: []
