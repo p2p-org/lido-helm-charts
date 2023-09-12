@@ -85,8 +85,6 @@ resources:
     cpu: 2
     memory: 1024Mi
 
-volumes: {}
-volumeMounts: {}
 podAnnotations: {}
 nodeSelector: {}
 tolerations: []
