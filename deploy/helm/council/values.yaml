@@ -70,7 +70,5 @@ resources:
     memory: "2048Mi"
 
 nodeSelector: {}
-
 tolerations: []
-
 affinity: {}
