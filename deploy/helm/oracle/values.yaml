@@ -2,6 +2,8 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+repository: https://github.com/lidofinance/lido-oracle
+
 # configuration of app
 app:
   el_node_rpc: "http://localhost:8545/"
@@ -22,13 +24,8 @@ app:
 # Kubernetes configuration
 replicaCount: 1
 
-labels:
-  app.kubernetes.io/name: lido-oracle
-  app.kubernetes.io/part-of: lidofinance
-
 image:
   repository: lidofinance/oracle@sha256
-  pullPolicy: IfNotPresent
   tag: "d2ee5ecc78f8b991fcd2327e1d1bc84b8015aa7b8fde73e5ec0e702e6bec6c86"
 
 imagePullSecrets: []

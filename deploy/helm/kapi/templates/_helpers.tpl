@@ -50,16 +50,6 @@ Selector labels
 {{- else -}}
 app.kubernetes.io/name: {{ include "kapi.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
-{{- end }}
-{{- end }}
-
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "kapi.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "kapi.fullname" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
+app.kubernetes.io/part-of: lidofinance
 {{- end }}
 {{- end }}
