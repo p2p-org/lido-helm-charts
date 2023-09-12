@@ -9,7 +9,8 @@ app:
   el_node_rpc: "http://localhost:8545/"
   cl_node_rpc: "http://localhost:3500/"
 
-  # by default set the testnet locator address
+  # mainnet: 0xC1d0b3DE6792Bf6b4b37EccdcC24e45978Cfd2Eb
+  # goerli:  0x1eDf09b5023DC86737b59dE68a8130De878984f5
   locator_address: "0x1eDf09b5023DC86737b59dE68a8130De878984f5"
   staking_module_id: "1"
 
