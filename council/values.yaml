@@ -1,8 +1,5 @@
 # Default values for council.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-repository: https://github.com/lidofinance/lido-council-daemon
+# Council repository: https://github.com/lidofinance/lido-council-daemon
 
 # configuration of app
 app:
@@ -12,20 +9,20 @@ app:
   log_level: "debug"
   log_format: "json"
 
-  # kapi
+  ## kapi
   keys_api_host: "http://localhost"
   keys_api_port: "80"
 
-  # RabbitMQ
+  ## RabbitMQ
   pubsub_service: "rabbitmq"
   rabbitmq_login: ""
   rabbitmq_url: "wss://dsm-03c0383ead244e64b948.testnet.fi:443/ws"
-  # set that you need
+  ## set that you need
   # rabbitmq_passcode:
   # rabbitmq_passcode_file:
 
-  # Wallet
-  # set that you need
+  ## Wallet
+  ## set that you need
   # wallet_private_key: ""
   # wallet_private_key_file: ""
 

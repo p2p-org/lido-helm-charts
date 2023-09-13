@@ -1,8 +1,6 @@
 apiVersion: v2
 name: council
-description: The Lido Council Daemon monitors deposit contract keys and compares them to Lido's unused keys.
-
 type: application
 version: 1.0.0
-
 appVersion: "112d35cd784072b3b531521f80c148cbfea975a93a079fab1f8e8ce705f6f580"
+description: The Lido Council Daemon monitors deposit contract keys and compares them to Lido's unused keys.
