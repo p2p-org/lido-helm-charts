@@ -1,23 +1,18 @@
 # Default values for ejector.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-repository: https://github.com/lidofinance/validator-ejector
+# Ejector repository: https://github.com/lidofinance/validator-ejector
 
 # configuration of app
 app:
   el_node_rpc: "http://localhost:8545/"
   cl_node_rpc: "http://localhost:3500/"
 
-  # mainnet: 0xC1d0b3DE6792Bf6b4b37EccdcC24e45978Cfd2Eb
-  # goerli:  0x1eDf09b5023DC86737b59dE68a8130De878984f5
+  ## mainnet: 0xC1d0b3DE6792Bf6b4b37EccdcC24e45978Cfd2Eb
+  ## goerli:  0x1eDf09b5023DC86737b59dE68a8130De878984f5
   locator_address: "0x1eDf09b5023DC86737b59dE68a8130De878984f5"
   staking_module_id: "1"
-
   operator_id: "0"
-
   messages_location: ""
-  # use that you need
+  ## use that you need
   # messages_password: ""
   # messages_password_file: ""
 
