@@ -1,8 +1,5 @@
 # Default values for kapi.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-repository: https://github.com/lidofinance/lido-keys-api
+# Kapi repository: https://github.com/lidofinance/lido-keys-api
 
 # configuration of app
 app:

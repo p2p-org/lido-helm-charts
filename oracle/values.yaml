@@ -1,8 +1,5 @@
 # Default values for oracle.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-repository: https://github.com/lidofinance/lido-oracle
+# Oracle repository: https://github.com/lidofinance/lido-oracle
 
 # configuration of app
 app:
