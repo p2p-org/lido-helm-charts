@@ -1,0 +1,6 @@
+apiVersion: v2
+name: ejector
+type: application
+version: 1.0.0
+appVersion: "e3acb5eb1bab5a871bf70e9bb736e1a1016567e1846a9b96c27232c84643597a"
+description: Daemon service which loads LidoOracle events for validator exits and sends out exit messages when necessary.

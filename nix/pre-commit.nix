@@ -7,10 +7,10 @@
     pre-commit.settings = {
       hooks = {
         alejandra.enable = true;
-        prettier.enable = true;
         statix.enable = true;
         terraform-format.enable = true;
         deadnix.enable = true;
+        prettier.enable = true;
       };
     };
   };

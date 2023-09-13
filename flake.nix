@@ -74,7 +74,6 @@
         # make custom lib available to all `perSystem` functions
         {_module.args.lib = lib;}
         ./nix
-        ./nixos
       ];
       systems = [
         "x86_64-linux"

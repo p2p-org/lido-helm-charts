@@ -1,0 +1,87 @@
+# Default values for ejector.
+# Ejector repository: https://github.com/lidofinance/validator-ejector
+
+# configuration of app
+app:
+  el_node_rpc: "http://localhost:8545/"
+  cl_node_rpc: "http://localhost:3500/"
+
+  ## mainnet: 0xC1d0b3DE6792Bf6b4b37EccdcC24e45978Cfd2Eb
+  ## goerli:  0x1eDf09b5023DC86737b59dE68a8130De878984f5
+  locator_address: "0x1eDf09b5023DC86737b59dE68a8130De878984f5"
+  staking_module_id: "1"
+  operator_id: "0"
+  messages_location: ""
+  ## use that you need
+  # messages_password: ""
+  # messages_password_file: ""
+
+  oracle_addresses_allowlist: >
+    [
+      "0x81E411f1BFDa43493D7994F82fb61A415F6b8Fd4",
+      "0xfdA7E01B2718C511bF016030010572e833C7aE6A",
+      "0xb29dD2f6672C0DFF2d2f173087739A42877A5172",
+      "0x1a13648EE85386cC101d2D7762e2848372068Bc3",
+      "0x3799bDA7B884D33F79CEC926af21160dc47fbe05",
+      "0xA8aF49FB44AAA8EECa9Ae918bb7c05e2E71c9DE9",
+      "0x4c75FA734a39f3a21C57e583c1c29942F021C6B7",
+      "0x7eE534a6081d57AFB25b5Cff627d4D26217BB0E9",
+      "0x19b1BEbe4773fEC2496FEf8b81a9c175A823844B"
+    ]
+  blocks_preload: "100000"
+  blocks_loop: "64"
+  job_interval: "384000"
+  http_port: "8989"
+
+  run_metrics: "true"
+  run_health_check: "true"
+
+  logger_level: "info"
+  logger_format: "simple"
+  logger_secrets: []
+
+  dry_run: "true"
+
+# Kubernetes configuration
+replicaCount: 1
+
+image:
+  repository: lidofinance/validator-ejector@sha256
+  pullPolicy: IfNotPresent
+  tag: "e3acb5eb1bab5a871bf70e9bb736e1a1016567e1846a9b96c27232c84643597a"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podSecurityContext:
+  runAsGroup: 1001
+  runAsUser: 1001
+  seccompProfile:
+    type: RuntimeDefault
+
+securityContext:
+  runAsNonRoot: true
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: false
+
+serviceAnnotations: {}
+
+service:
+  type: ClusterIP
+  port: 8989
+
+resources:
+  limits:
+    memory: 2048Mi
+  requests:
+    cpu: 2
+    memory: 1024Mi
+
+podAnnotations: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
