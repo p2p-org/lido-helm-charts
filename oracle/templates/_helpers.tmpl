@@ -34,11 +34,11 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "oracle.labels" -}}
-helm.sh/chart: {{ include "oracle.chart" . -}}
+helm.sh/chart: {{ include "oracle.chart" . }}
 {{ include "oracle.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ (toString .Chart.AppVersion) | trunc 63 | quote }}
-app.kubernetes.io/component: lido-oracle
+app.kubernetes.io/component: oracle
 {{- end }}
 {{- end }}
 
