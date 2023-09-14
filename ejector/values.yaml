@@ -47,7 +47,6 @@ replicaCount: 1
 
 image:
   repository: lidofinance/validator-ejector@sha256
-  pullPolicy: IfNotPresent
   tag: "e3acb5eb1bab5a871bf70e9bb736e1a1016567e1846a9b96c27232c84643597a"
 
 imagePullSecrets: []
