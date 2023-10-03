@@ -2,6 +2,10 @@
 # Oracle repository: https://github.com/lidofinance/lido-oracle
 
 # configuration of app
+kinds:
+  - accounting
+  - ejector
+
 app:
   el_node_rpc: "http://localhost:8545/"
   cl_node_rpc: "http://localhost:3500/"
