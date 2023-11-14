@@ -1,0 +1,32 @@
+name: Release and Upload Artifact
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        folder:
+          - ./council
+          - ./ejector
+          - ./kapi
+          - ./oracle
+    defaults:
+      run:
+        working-directory: ${{ matrix.folder }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Helm
+        uses: azure/setup-helm@v3
+
+      - name: Package Helm chart
+        run: |
+          helm package . --version ${{ github.ref }}
+          cat ${{ secrets.HELM_CREDENTIALS }} | helm registry login -u _json_key --password-stdin https://europe-docker.pkg.dev
+          helm push https://europe-docker-docker.pkg.dev
