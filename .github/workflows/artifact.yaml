@@ -32,7 +32,7 @@ jobs:
         run: |
           helm package . --version ${{ env.RELEASE_VERSION }}
           echo "$HELM_CREDENTIALS" | helm registry login -u _json_key --password-stdin https://europe-docker.pkg.dev
-          helm push ${{ matrix.folder }}-${{ env.RELEASE_VERSION}}.tgz oci://europe-docker.pkg.dev/etherno-infra/main
+          helm push ${{ matrix.folder }}-${{ env.RELEASE_VERSION}}.tgz oci://europe-docker.pkg.dev/etherno-infra/lido
         shell: bash
         env:
           HELM_CREDENTIALS: ${{ secrets.HELM_CREDENTIALS }}
