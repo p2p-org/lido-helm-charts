@@ -31,5 +31,8 @@ jobs:
       - name: Package Helm chart
         run: |
           helm package . --version ${{ env.RELEASE_VERSION }}
-          cat ${{ secrets.HELM_CREDENTIALS }} | helm registry login -u _json_key --password-stdin https://europe-docker.pkg.dev
+          cat $HELM_CREDENTIALS | helm registry login -u _json_key --password-stdin https://europe-docker.pkg.dev
           helm push https://europe-docker-docker.pkg.dev
+        shell: bash
+        env:
+          HELM_CREDENTIALS: ${{ secrets.HELM_CREDENTIALS }}
