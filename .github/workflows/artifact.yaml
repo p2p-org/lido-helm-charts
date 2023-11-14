@@ -22,11 +22,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
       - name: Install Helm
         uses: azure/setup-helm@v3
 
       - name: Package Helm chart
         run: |
-          helm package . --version ${{ github.ref }}
+          helm package . --version ${{ env.RELEASE_VERSION }}
           cat ${{ secrets.HELM_CREDENTIALS }} | helm registry login -u _json_key --password-stdin https://europe-docker.pkg.dev
           helm push https://europe-docker-docker.pkg.dev
