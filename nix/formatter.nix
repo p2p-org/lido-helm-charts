@@ -14,8 +14,8 @@
       programs = {
         alejandra.enable = true;
         prettier.enable = true;
-        terraform.enable = true;
       };
+      settings.global.excludes = ["flake.lock"];
     };
     formatter = config.treefmt.build.wrapper;
   };

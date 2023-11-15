@@ -5,10 +5,10 @@
 
   perSystem = {
     pre-commit.settings = {
+      excludes = ["flake.lock"];
       hooks = {
         alejandra.enable = true;
         statix.enable = true;
-        terraform-format.enable = true;
         deadnix.enable = true;
         prettier.enable = true;
       };
