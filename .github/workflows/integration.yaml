@@ -8,7 +8,7 @@ on:
       - main
 
 jobs:
-  release:
+  helm-lint:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -27,3 +27,10 @@ jobs:
         uses: azure/setup-helm@v3
       - name: Linting
         run: "helm lint . "
+
+  nix-fmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: DeterminateSystems/nix-installer-action@main
+      - run: nix fmt
