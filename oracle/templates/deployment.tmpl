@@ -1,7 +1,10 @@
+{{- range $kind := .Values.kinds }}
+{{- with dict "Values" $.Values  "Release" $.Release "Chart" $.Chart "Kind" $kind }}
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ printf "%s-accounting" (include "oracle.fullname" . ) }}
+  name: {{ include "oracle.fullname" . }}
   labels:
     {{- include "oracle.labels" . | nindent 4 }}
 spec:
@@ -22,12 +25,16 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.podSecurityContext }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
+          {{- if .Values.securityContext }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
+          {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           args: ["accounting"]
           imagePullPolicy: IfNotPresent
@@ -77,3 +84,5 @@ spec:
       volumes:
         {{- toYaml .Values.volumes | nindent 8 }}
       {{- end }}
+{{- end }}
+{{- end }}

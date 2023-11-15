@@ -2,6 +2,10 @@
 # Oracle repository: https://github.com/lidofinance/lido-oracle
 
 # configuration of app
+kinds:
+  - accounting
+  - ejector
+
 app:
   el_node_rpc: "http://localhost:8545/"
   cl_node_rpc: "http://localhost:3500/"
@@ -12,6 +16,7 @@ app:
 
   # mainnet: 0xC1d0b3DE6792Bf6b4b37EccdcC24e45978Cfd2Eb
   # goerli:  0x1eDf09b5023DC86737b59dE68a8130De878984f5
+  # holešky: 0x28FAB2059C713A7F9D8c86Db49f9bb0e96Af1ef8
   lido_locator_address: "0x1eDf09b5023DC86737b59dE68a8130De878984f5"
 
   tx_gas_addition: "100000"
@@ -48,7 +53,7 @@ securityContext:
 
 service:
   type: ClusterIP
-  port: 9010
+  port: 9000
 
 resources:
   limits:
