@@ -1,0 +1,29 @@
+name: Integration
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        folder:
+          - council
+          - ejector
+          - kapi
+          - oracle
+    defaults:
+      run:
+        working-directory: "./${{ matrix.folder }}"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install Helm
+        uses: azure/setup-helm@v3
+      - name: Linting
+        run: "helm lint . "
