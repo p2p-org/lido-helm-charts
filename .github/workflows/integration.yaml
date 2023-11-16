@@ -1,0 +1,52 @@
+name: Integration
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  helm-lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        folder:
+          - council
+          - ejector
+          - kapi
+          - oracle
+    defaults:
+      run:
+        working-directory: "./${{ matrix.folder }}"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install Helm
+        uses: azure/setup-helm@v3
+      - name: Linting
+        run: "helm lint . "
+
+  nix-check-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v22
+      - id: set-matrix
+        name: Generate Nix Matrix
+        run: |
+          set -Eeu
+          echo "matrix=$(nix eval --json '.#githubActions.matrix')" >> "$GITHUB_OUTPUT"
+
+  nix-check:
+    needs: nix-check-matrix
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix: ${{fromJSON(needs.nix-check-matrix.outputs.matrix)}}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v22
+      - run: nix build -L ".#${{ matrix.attr }}" --accept-flake-config
