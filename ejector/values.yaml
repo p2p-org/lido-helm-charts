@@ -48,7 +48,7 @@ replicaCount: 1
 
 image:
   repository: lidofinance/validator-ejector@sha256
-  tag: "e3acb5eb1bab5a871bf70e9bb736e1a1016567e1846a9b96c27232c84643597a"
+  tag: "6ea844fcb150c5c6222b37e1b7b35345a0d2e7c2c17e72baae7cf807a515544f"
 
 imagePullSecrets: []
 nameOverride: ""
