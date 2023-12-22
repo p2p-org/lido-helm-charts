@@ -28,6 +28,9 @@ spec:
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
+          {{- if .Values.serviceAccount.create }}
+          serviceAccountName: {{ include "ejector.serviceAccountName" . }}
+          {{- end }}
           {{- if .Values.securityContext }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}

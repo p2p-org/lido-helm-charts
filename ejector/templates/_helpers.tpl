@@ -54,3 +54,14 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 app.kubernetes.io/part-of: lidofinance
 {{- end }}
 {{- end }}
+
+{{/*
+Create the name of the service account to use
+*/}}
+{{- define "ejector.serviceAccountName" -}}
+{{- if .Values.serviceAccount.create }}
+{{- default (include "ejector.fullname" .) .Values.serviceAccount.name }}
+{{- else }}
+{{- default "default" .Values.serviceAccount.name }}
+{{- end }}
+{{- end }}
