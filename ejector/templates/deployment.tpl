@@ -22,15 +22,15 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.serviceAccount.create }}
+      serviceAccountName: {{ include "ejector.serviceAccountName" . }}
+      {{- end }}
       {{- if .Values.podSecurityContext }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
-          {{- if .Values.serviceAccount.create }}
-          serviceAccountName: {{ include "ejector.serviceAccountName" . }}
-          {{- end }}
           {{- if .Values.securityContext }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
