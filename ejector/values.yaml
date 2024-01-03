@@ -73,7 +73,7 @@ serviceAccount:
   create: false
   automount: true
   annotations: {}
-  name: "ejector-sa"
+  name: "ejector"
 
 service:
   type: ClusterIP
