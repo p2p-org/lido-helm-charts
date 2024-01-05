@@ -36,6 +36,7 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          command: ["sleep", "3600"]
           imagePullPolicy: IfNotPresent
           volumeMounts:
           {{- if .Values.volumeMounts }}
