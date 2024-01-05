@@ -80,7 +80,7 @@ service:
   port: 8989
 
 startupProbe:
-  failureThreshold: 40
+  failureThreshold: 10
   periodSeconds: 60
 
 resources:
