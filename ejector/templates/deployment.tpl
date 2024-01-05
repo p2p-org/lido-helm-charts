@@ -77,7 +77,15 @@ spec:
             httpGet:
               path: /
               port: http
-          {{- if .Values.resources}}
+          {{- if .Values.startupProbe }}
+          startupProbe:
+            httpGet:
+              path: /
+              port: http
+            failureThreshold: {{ .Values.startupProbe.failureThreshold }}
+            periodSeconds: {{ .Values.startupProbe.periodSeconds }}
+          {{- end }}
+          {{- if .Values.resources }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- end }}

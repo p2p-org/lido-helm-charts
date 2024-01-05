@@ -79,6 +79,10 @@ service:
   type: ClusterIP
   port: 8989
 
+startupProbe:
+  failureThreshold: 40
+  periodSeconds: 60
+
 resources:
   limits:
     memory: 2048Mi
