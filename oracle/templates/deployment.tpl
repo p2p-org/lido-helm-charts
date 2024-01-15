@@ -36,7 +36,7 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          args: ["accounting"]
+          args: ["{{ .Kind }}"]
           imagePullPolicy: IfNotPresent
           {{- if .Values.volumeMounts }}
           volumeMounts:
@@ -62,24 +62,17 @@ spec:
                   key: CL_NODE_RPC
           ports:
             - name: http
-              containerPort: {{ .Values.service.port }}
-              protocol: TCP
-            - name: healthcheck
-              containerPort: {{ .Values.app.healthcheck_server_port | default "9010" }}
+              containerPort: {{ .Values.service.port | default "9000" }}
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /healthcheck
-              port: healthcheck
-          readinessProbe:
-            httpGet:
-              path: /healthcheck
-              port: healthcheck
+              path: /
+              port: http
           {{- if .Values.startupProbe }}
           startupProbe:
             httpGet:
-              path: /healthcheck
-              port: healthcheck
+              path: /
+              port: http
             failureThreshold: {{ .Values.startupProbe.failureThreshold }}
             periodSeconds: {{ .Values.startupProbe.periodSeconds }}
           {{- end }}

@@ -1,3 +1,6 @@
+{{- range $kind := .Values.kinds }}
+{{- with dict "Values" $.Values  "Release" $.Release "Chart" $.Chart "Kind" $kind }}
+---
 apiVersion: v1
 kind: Pod
 metadata:
@@ -13,3 +16,5 @@ spec:
       command: ['wget']
       args: ['{{ include "oracle.fullname" . }}:{{ .Values.service.port }}']
   restartPolicy: Never
+{{- end }}
+{{- end }}
