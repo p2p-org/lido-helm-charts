@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "oracle.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "oracle.fullname" . }}:{{ .Values.app.prometheus_port }}']
   restartPolicy: Never

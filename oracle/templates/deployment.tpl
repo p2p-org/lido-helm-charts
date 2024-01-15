@@ -62,7 +62,7 @@ spec:
                   key: CL_NODE_RPC
           ports:
             - name: http
-              containerPort: {{ .Values.service.port }}
+              containerPort: {{ .Values.app.prometheus_port | default "9000" }}
               protocol: TCP
             - name: healthcheck
               containerPort: {{ .Values.app.healthcheck_server_port | default "9010" }}
