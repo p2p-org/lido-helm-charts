@@ -81,6 +81,10 @@ service:
 ingress:
   enabled: false
 
+startupProbe:
+  failureThreshold: 10
+  periodSeconds: 60
+
 resources:
   limits:
     memory: 8196Mi

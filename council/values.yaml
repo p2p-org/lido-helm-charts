@@ -59,6 +59,10 @@ service:
   type: ClusterIP
   port: 3000
 
+startupProbe:
+  failureThreshold: 10
+  periodSeconds: 60
+
 resources:
   requests:
     memory: "1024Mi"

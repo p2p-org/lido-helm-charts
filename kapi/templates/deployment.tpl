@@ -72,6 +72,14 @@ spec:
               port: {{ .Values.service.targetPort }}
             initialDelaySeconds: 15
             periodSeconds: 15
+          {{- if .Values.startupProbe }}
+          startupProbe:
+            httpGet:
+              path: /health
+              port: http
+            failureThreshold: {{ .Values.startupProbe.failureThreshold }}
+            periodSeconds: {{ .Values.startupProbe.periodSeconds }}
+          {{- end }}
           {{- if .Values.resources}}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

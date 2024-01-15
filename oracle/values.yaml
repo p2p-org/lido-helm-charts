@@ -55,6 +55,10 @@ service:
   type: ClusterIP
   port: 9000
 
+startupProbe:
+  failureThreshold: 10
+  periodSeconds: 60
+
 resources:
   limits:
     memory: 6144Mi
