@@ -51,6 +51,10 @@ securityContext:
   privileged: false
   readOnlyRootFilesystem: false
 
+service:
+  type: ClusterIP
+  port: 9000
+
 startupProbe:
   failureThreshold: 10
   periodSeconds: 60

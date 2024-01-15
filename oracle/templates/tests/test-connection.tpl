@@ -1,3 +1,6 @@
+{{- range $kind := .Values.kinds }}
+{{- with dict "Values" $.Values  "Release" $.Release "Chart" $.Chart "Kind" $kind }}
+---
 apiVersion: v1
 kind: Pod
 metadata:
@@ -11,5 +14,7 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "oracle.fullname" . }}:{{ .Values.app.prometheus_port }}']
+      args: ['{{ include "oracle.fullname" . }}:{{ .Values.service.port }}']
   restartPolicy: Never
+{{- end }}
+{{- end }}

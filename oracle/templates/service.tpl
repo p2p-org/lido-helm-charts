@@ -10,14 +10,10 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: {{ .Values.app.prometheus_port | default "9000" }}
+    - port: {{ .Values.service.port }}
       targetPort: http
       protocol: TCP
       name: http
-    - port: {{ .Values.app.healthcheck_server_port | default "9010" }}
-      targetPort: http
-      protocol: TCP
-      name: healthcheck
   selector:
     {{- include "oracle.selectorLabels" . | nindent 4 }}
 {{- end }}
