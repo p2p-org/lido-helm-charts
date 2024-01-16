@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "council.pvcCacheName" . }}
+  name: {{ include "council.cacheName" . }}
 spec:
   accessModes:
     - ReadWriteOnce

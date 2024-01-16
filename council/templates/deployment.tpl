@@ -100,7 +100,7 @@ spec:
         {{- if .Values.cache.enabled }}
         - name: council-cache
           persistentVolumeClaim:
-            claimName: {{ include "council.pvcCacheName" . }}
+            claimName: {{ include "council.cacheName" . }}
         {{- end }}
         - name: tmp
           emptyDir:
