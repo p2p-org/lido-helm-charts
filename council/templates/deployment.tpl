@@ -44,6 +44,8 @@ spec:
             - mountPath: /.yarn
               name: tmp
               subPath: tmp
+            - mountPath: /council/cache/
+              name: council-storage
           env:
           {{- range $key, $value := .Values.app }}
             - name: {{ $key | upper }}
@@ -93,7 +95,10 @@ spec:
       {{- if .Values.volumes }}
         {{- toYaml .Values.volumes | nindent 8 }}
       {{- end }}
+        - name: council-storage
+          persistentVolumeClaim:
+            claimName: {{ include "council.pvcName" . }}
         - name: tmp
           emptyDir:
             medium: Memory
-            sizeLimit: 1024Mi
+            sizeLimit: 128Mi
