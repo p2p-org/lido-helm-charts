@@ -1,11 +1,13 @@
+{{- if .Values.cache.enabled -}}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "council.pvcName" . }}
+  name: {{ include "council.pvcCacheName" . }}
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: standard-rwo
+  storageClassName: {{ .Values.cache.storageClassName }}
   resources:
     requests:
-      storage: 2Gi
+      storage: {{ .Values.cache.size }}
+{{- end }}

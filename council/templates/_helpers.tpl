@@ -8,8 +8,8 @@ Expand the name of the chart.
 {{/*
 Expand the PVC name of the chart.
 */}}
-{{- define "council.pvcName" -}}
-{{ include "council.fullname" . }}-pvc-storage
+{{- define "council.pvcCacheName" -}}
+{{ include "council.fullname" . }}-pvc-cache
 {{- end }}
 
 {{/*

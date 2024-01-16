@@ -63,6 +63,11 @@ startupProbe:
   failureThreshold: 10
   periodSeconds: 60
 
+cache:
+  enabled: false
+  storageClassName: ""
+  size: "2Gi"
+
 resources:
   requests:
     memory: "1024Mi"
