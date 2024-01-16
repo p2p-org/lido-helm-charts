@@ -66,13 +66,23 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
-              port: http
+              host: 127.0.0.1
+              path: /healthcheck
+              port: {{ .Values.app.healthcheck_server_port | default "9010" }}
+              scheme: HTTP
+          readinessProbe:
+            httpGet:
+              host: 127.0.0.1
+              path: /healthcheck
+              port: {{ .Values.app.healthcheck_server_port | default "9010" }}
+              scheme: HTTP
           {{- if .Values.startupProbe }}
           startupProbe:
             httpGet:
-              path: /
-              port: http
+              host: 127.0.0.1
+              path: /healthcheck
+              port: {{ .Values.app.healthcheck_server_port | default "9010" }}
+              scheme: HTTP
             failureThreshold: {{ .Values.startupProbe.failureThreshold }}
             periodSeconds: {{ .Values.startupProbe.periodSeconds }}
           {{- end }}
