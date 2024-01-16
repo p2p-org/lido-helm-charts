@@ -63,6 +63,7 @@ startupProbe:
   failureThreshold: 10
   periodSeconds: 60
 
+# use PersistentVolumeClaim to store cache data
 cache:
   enabled: false
   storageClassName: ""
