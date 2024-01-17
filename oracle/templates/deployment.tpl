@@ -79,10 +79,8 @@ spec:
           {{- if .Values.startupProbe }}
           startupProbe:
             httpGet:
-              host: 127.0.0.1
-              path: /healthcheck
-              port: {{ .Values.app.healthcheck_server_port | default "9010" }}
-              scheme: HTTP
+              path: /
+              port: http
             failureThreshold: {{ .Values.startupProbe.failureThreshold }}
             periodSeconds: {{ .Values.startupProbe.periodSeconds }}
           {{- end }}
