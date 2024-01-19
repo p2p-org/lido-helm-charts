@@ -64,18 +64,22 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port | default "9000" }}
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              host: 127.0.0.1
-              path: /healthcheck
-              port: {{ .Values.app.healthcheck_server_port | default "9010" }}
-              scheme: HTTP
+          livenessProbe:                                                                                                                                                            
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: {{ .Values.service.port | default "9000" }}
+            timeoutSeconds: 1
           readinessProbe:
-            httpGet:
-              host: 127.0.0.1
-              path: /healthcheck
-              port: {{ .Values.app.healthcheck_server_port | default "9010" }}
-              scheme: HTTP
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: {{ .Values.service.port | default "9000" }}
+            timeoutSeconds: 1
           {{- if .Values.startupProbe }}
           startupProbe:
             httpGet:
