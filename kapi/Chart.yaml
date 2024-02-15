@@ -2,5 +2,5 @@ apiVersion: v2
 name: kapi
 type: application
 version: 1.0.0
-appVersion: "acab89209a6942ed48c1c5143584a1694e787b836e0142135727f4f88bae95b6"
+appVersion: "1fa93bf79f68c624b144aa02f3af780f9a6236cbe2dc95a11208d3aa33ca11ad"
 description: Lido keys and validators HTTP API
