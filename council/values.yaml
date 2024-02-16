@@ -31,7 +31,7 @@ replicaCount: 1
 
 image:
   repository: lidofinance/lido-council-daemon@sha256
-  tag: "3a26a1e23f6bafbb0e0cc5a30d1a4440ad00e97e385babbf552bd1f9fe4dbd40"
+  tag: "9cf75a504affb18bb45a2c214a024d7dcde8fada242ea5e0c9f51e6faaafe032"
 
 imagePullSecrets: []
 nameOverride: ""
