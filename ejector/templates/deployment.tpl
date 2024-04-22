@@ -69,14 +69,12 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: http
           readinessProbe:
             httpGet:
               path: /health
-              port: http
+              port: {{ .Values.service.port }}
+            initialDelaySeconds: 15
+            periodSeconds: 15
           {{- if .Values.startupProbe }}
           startupProbe:
             httpGet:
