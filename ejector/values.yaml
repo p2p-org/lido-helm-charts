@@ -80,8 +80,21 @@ service:
   port: 8989
 
 startupProbe:
+  httpGet:
+    path: /health
+    port: http
   failureThreshold: 10
   periodSeconds: 60
+
+livenessProbe:
+  httpGet:
+    path: /health
+    port: http
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: http
 
 resources:
   limits:
