@@ -55,7 +55,28 @@ service:
   type: ClusterIP
   port: 9000
 
+livenessProbe:
+  failureThreshold: 3
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  successThreshold: 1
+  tcpSocket:
+    port: 9000
+  timeoutSeconds: 1
+
+readinessProbe:
+  failureThreshold: 3
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  successThreshold: 1
+  tcpSocket:
+    port: 9000
+  timeoutSeconds: 1
+
 startupProbe:
+  httpGet:
+    path: /
+    port: http
   failureThreshold: 10
   periodSeconds: 60
 
