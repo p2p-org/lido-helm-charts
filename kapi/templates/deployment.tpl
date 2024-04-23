@@ -66,19 +66,17 @@ spec:
             - name:  http
               containerPort: {{ .Values.service.targetPort }}
               protocol: TCP
+          {{- if .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.readinessProbe }}
           readinessProbe:
-            httpGet:
-              path: /health
-              port: {{ .Values.service.targetPort }}
-            initialDelaySeconds: 15
-            periodSeconds: 15
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          {{- end }}
           {{- if .Values.startupProbe }}
           startupProbe:
-            httpGet:
-              path: /health
-              port: http
-            failureThreshold: {{ .Values.startupProbe.failureThreshold }}
-            periodSeconds: {{ .Values.startupProbe.periodSeconds }}
+            {{- toYaml .Values.startupProbe | nindent 12 }}
           {{- end }}
           {{- if .Values.resources}}
           resources:

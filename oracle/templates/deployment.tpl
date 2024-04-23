@@ -64,29 +64,17 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port | default "9000" }}
               protocol: TCP
-          livenessProbe:                                                                                                                                                            
-            failureThreshold: 3
-            initialDelaySeconds: 5
-            periodSeconds: 10
-            successThreshold: 1
-            tcpSocket:
-              port: {{ .Values.service.port | default "9000" }}
-            timeoutSeconds: 1
+          {{- if .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.readinessProbe }}
           readinessProbe:
-            failureThreshold: 3
-            initialDelaySeconds: 5
-            periodSeconds: 10
-            successThreshold: 1
-            tcpSocket:
-              port: {{ .Values.service.port | default "9000" }}
-            timeoutSeconds: 1
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          {{- end }}
           {{- if .Values.startupProbe }}
           startupProbe:
-            httpGet:
-              path: /
-              port: http
-            failureThreshold: {{ .Values.startupProbe.failureThreshold }}
-            periodSeconds: {{ .Values.startupProbe.periodSeconds }}
+            {{- toYaml .Values.startupProbe | nindent 12 }}
           {{- end }}
           {{- if .Values.resources}}
           resources:

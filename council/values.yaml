@@ -60,8 +60,21 @@ service:
   port: 3000
 
 startupProbe:
+  httpGet:
+    path: /health
+    port: http
   failureThreshold: 10
   periodSeconds: 60
+
+livenessProbe:
+  httpGet:
+    path: /health
+    port: http
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: http
 
 # use PersistentVolumeClaim to store cache data
 cache:
