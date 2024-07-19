@@ -48,7 +48,7 @@ replicaCount: 1
 
 image:
   repository: lidofinance/lido-keys-api@sha256
-  tag: "acab89209a6942ed48c1c5143584a1694e787b836e0142135727f4f88bae95b6"
+  tag: "5639ca090d931debba6e086436827accca38f5c603bd13b62405e4ea3230f6f5"
 
 imagePullSecrets: []
 nameOverride: ""
