@@ -5,30 +5,81 @@
 kinds:
   - accounting
   - ejector
+  - cms
 
 app:
-  el_node_rpc: "http://localhost:8545/"
-  cl_node_rpc: "http://localhost:3500/"
+  #  Accounting Oracle (AO)
+  accounting:
+    el_node_rpc: "http://localhost:8545/"
+    cl_node_rpc: "http://localhost:3500/"
 
-  prometheus_port: "9000"
-  healthcheck_server_port: "9010"
-  keys_api_uri: "http://kapi"
+    prometheus_port: "9000"
+    healthcheck_server_port: "9010"
+    keys_api_uri: "http://kapi"
 
-  # mainnet: 0xC1d0b3DE6792Bf6b4b37EccdcC24e45978Cfd2Eb
-  # goerli:  0x1eDf09b5023DC86737b59dE68a8130De878984f5
-  # holešky: 0x28FAB2059C713A7F9D8c86Db49f9bb0e96Af1ef8
-  lido_locator_address: "0x1eDf09b5023DC86737b59dE68a8130De878984f5"
+    # mainnet: 0xC1d0b3DE6792Bf6b4b37EccdcC24e45978Cfd2Eb
+    # goerli:  0x1eDf09b5023DC86737b59dE68a8130De878984f5
+    # holešky: 0x28FAB2059C713A7F9D8c86Db49f9bb0e96Af1ef8
+    lido_locator_address: "0x1eDf09b5023DC86737b59dE68a8130De878984f5"
 
-  tx_gas_addition: "100000"
-  allow_reporting_in_bunker_mode: "false"
-  daemon: "false"
+    tx_gas_addition: "100000"
+    daemon: "false"
+    allow_reporting_in_bunker_mode: "false"
+    # add secrets variables to your external config
+    # member_priv_key: ""
+    # member_priv_key_file: ""
+
+  #  Validator Exit Bus Oracle (VEBO)
+  ejector:
+    el_node_rpc: "http://localhost:8545/"
+    cl_node_rpc: "http://localhost:3500/"
+
+    prometheus_port: "9000"
+    healthcheck_server_port: "9010"
+    keys_api_uri: "http://kapi"
+
+    # mainnet: 0xC1d0b3DE6792Bf6b4b37EccdcC24e45978Cfd2Eb
+    # goerli:  0x1eDf09b5023DC86737b59dE68a8130De878984f5
+    # holešky: 0x28FAB2059C713A7F9D8c86Db49f9bb0e96Af1ef8
+    lido_locator_address: "0x28FAB2059C713A7F9D8c86Db49f9bb0e96Af1ef8"
+
+    tx_gas_addition: "100000"
+    daemon: "false"
+    # add secrets variables to your external config
+    # member_priv_key: ""
+    # member_priv_key_file: ""
+
+  # Community Staking Module (CSM)
+  cms:
+    el_node_rpc: "http://localhost:8545/"
+    cl_node_rpc: "http://localhost:3500/"
+
+    prometheus_port: "9000"
+    healthcheck_server_port: "9010"
+    keys_api_uri: "http://kapi"
+
+    # mainnet: 0xC1d0b3DE6792Bf6b4b37EccdcC24e45978Cfd2Eb
+    # goerli:  0x1eDf09b5023DC86737b59dE68a8130De878984f5
+    # holešky: 0x28FAB2059C713A7F9D8c86Db49f9bb0e96Af1ef8
+    lido_locator_address: "0x28FAB2059C713A7F9D8c86Db49f9bb0e96Af1ef8"
+
+    tx_gas_addition: "100000"
+    daemon: "false"
+    # holešky: 0x4562c3e63c2e586cD1651B958C22F88135aCAd4f
+    csm_module_address: "0x4562c3e63c2e586cD1651B958C22F88135aCAd4f"
+    # add secrets variables to your external config
+    # member_priv_key: ""
+    # member_priv_key_file: ""
+    # pinata_jwt:     "<jwt token>"
+    # gw3_access_key: "<api key>"
+    # gw3_secret_key: "<api secret>"
 
 # Kubernetes configuration
 replicaCount: 1
 
 image:
   repository: lidofinance/oracle@sha256
-  tag: "d2ee5ecc78f8b991fcd2327e1d1bc84b8015aa7b8fde73e5ec0e702e6bec6c86"
+  tag: "f512922091697952aa58ab25b32792e72b08092675032f0670d5447e802595ec"
 
 imagePullSecrets: []
 nameOverride: ""
