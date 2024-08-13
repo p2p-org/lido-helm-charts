@@ -5,7 +5,7 @@
 kinds:
   - accounting
   - ejector
-  - cms
+  - csm
 
 app:
   #  Accounting Oracle (AO)
@@ -50,7 +50,7 @@ app:
     # member_priv_key_file: ""
 
   # Community Staking Module (CSM)
-  cms:
+  csm:
     el_node_rpc: "http://localhost:8545/"
     cl_node_rpc: "http://localhost:3500/"
 
