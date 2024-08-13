@@ -5,7 +5,7 @@
 kinds:
   - accounting
   - ejector
-  - cms
+  - csm
 
 app:
   #  Accounting Oracle (AO)
