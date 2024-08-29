@@ -65,6 +65,9 @@ app:
 
     tx_gas_addition: "100000"
     daemon: "false"
+
+    cache_path: "/cache"
+
     # holešky: 0x4562c3e63c2e586cD1651B958C22F88135aCAd4f
     csm_module_address: "0x4562c3e63c2e586cD1651B958C22F88135aCAd4f"
     # add secrets variables to your external config
@@ -105,6 +108,12 @@ securityContext:
 service:
   type: ClusterIP
   port: 9000
+
+# use PersistentVolumeClaim to store cache data for CSM
+cache:
+  enabled: false
+  storageClassName: ""
+  size: "1Gi"
 
 livenessProbe:
   failureThreshold: 3

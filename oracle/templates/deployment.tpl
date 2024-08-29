@@ -1,11 +1,10 @@
 {{- range $kind := .Values.kinds }}
 {{- with dict "Values" $.Values  "Release" $.Release "Chart" $.Chart "Kind" $kind }}
-{{- $_fullname:= include "oracle.fullname" . }}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ $_fullname }}
+  name: {{ include "oracle.fullname" . }}
   labels:
     {{- include "oracle.labels" . | nindent 4 }}
 spec:
@@ -39,27 +38,36 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           args: ["{{ .Kind }}"]
           imagePullPolicy: IfNotPresent
-          {{- if .Values.volumeMounts }}
+          {{- if eq .Kind "csm" }}
+          volumeMounts:
+            {{- if .Values.volumeMounts }}
+            {{- toYaml .Values.volumeMounts | nindent 12 }}
+            {{- end }}
+            - mountPath: /cache/
+              name: {{ include "oracle.cacheName" $ }}
+          {{- else }}
+            {{- if .Values.volumeMounts }}
           volumeMounts:
             {{- toYaml .Values.volumeMounts | nindent 12 }}
+            {{- end }}
           {{- end }}
           env:
           {{- range $key, $value := index .Values.app .Kind }}
             - name: {{ $key | upper }}
               valueFrom:
                 configMapKeyRef:
-                  name: {{ $_fullname }}
+                  name: {{ include "oracle.fullname" $ }}
                   key: {{ $key | upper }}
           {{- end }}
             - name: EXECUTION_CLIENT_URI
               valueFrom:
                 configMapKeyRef:
-                  name: {{ $_fullname }}
+                  name: {{ include "oracle.fullname" $ }}
                   key: EL_NODE_RPC
             - name: CONSENSUS_CLIENT_URI
               valueFrom:
                 configMapKeyRef:
-                  name: {{ $_fullname }}
+                  name: {{ include "oracle.fullname" $ }}
                   key: CL_NODE_RPC
           ports:
             - name: http
@@ -93,9 +101,24 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if eq .Kind "csm" }}
+      volumes:
+        {{- toYaml .Values.volumes | nindent 8 }}
+        {{- if .Values.cache.enabled }}
+        - name: {{ include "oracle.cacheName" $ }}
+          persistentVolumeClaim:
+            claimName: {{ include "oracle.cacheName" $ }}
+        {{- else }}
+        - name: {{ include "oracle.cacheName" $ }}
+            emptyDir:
+│             medium: Memory 
+│             sizeLimit: 512Mi
+        {{- end }}
+      {{- else }}
       {{- if .Values.volumes }}
       volumes:
         {{- toYaml .Values.volumes | nindent 8 }}
+      {{- end }}
       {{- end }}
 {{- end }}
 {{- end }}
