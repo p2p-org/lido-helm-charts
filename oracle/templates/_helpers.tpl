@@ -22,6 +22,13 @@ If release name contains chart name it will be used as a full name.
 {{- end }}
 
 {{/*
+Expand the PVC name of the chart.
+*/}}
+{{- define "oracle.cacheName" -}}
+{{ include "oracle.fullname" . }}-csm-cache
+{{- end }}
+
+{{/*
 Common labels
 */}}
 {{- define "oracle.labels" -}}
