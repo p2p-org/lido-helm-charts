@@ -1,5 +1,6 @@
 {{- range $kind := .Values.kinds }}
 {{- with dict "Values" $.Values  "Release" $.Release "Chart" $.Chart "Kind" $kind }}
+{{- $_fullname:= include "oracle.fullname" . }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -56,18 +57,18 @@ spec:
             - name: {{ $key | upper }}
               valueFrom:
                 configMapKeyRef:
-                  name: {{ include "oracle.fullname" $ }}
+                  name: {{ $_fullname }}
                   key: {{ $key | upper }}
           {{- end }}
             - name: EXECUTION_CLIENT_URI
               valueFrom:
                 configMapKeyRef:
-                  name: {{ include "oracle.fullname" $ }}
+                  name: {{ $_fullname }}
                   key: EL_NODE_RPC
             - name: CONSENSUS_CLIENT_URI
               valueFrom:
                 configMapKeyRef:
-                  name: {{ include "oracle.fullname" $ }}
+                  name: {{ $_fullname }}
                   key: CL_NODE_RPC
           ports:
             - name: http
