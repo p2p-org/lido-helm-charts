@@ -93,6 +93,7 @@ podAnnotations: {}
 podSecurityContext:
   runAsGroup: 1001
   runAsUser: 1001
+  fsGroup: 1001
   seccompProfile:
     type: RuntimeDefault
 
