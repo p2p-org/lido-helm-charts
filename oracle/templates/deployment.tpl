@@ -44,7 +44,7 @@ spec:
             {{- if .Values.volumeMounts }}
             {{- toYaml .Values.volumeMounts | nindent 12 }}
             {{- end }}
-            - mountPath: /cache/
+            - mountPath: {{- .Values.app.csm.cache_path | default "/cache" }}
               name: {{ include "oracle.cacheName" $ }}
           {{- else }}
             {{- if .Values.volumeMounts }}
