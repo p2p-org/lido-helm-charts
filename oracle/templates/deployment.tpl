@@ -1,6 +1,7 @@
 {{- range $kind := .Values.kinds }}
 {{- with dict "Values" $.Values  "Release" $.Release "Chart" $.Chart "Kind" $kind }}
-{{- $_fullname:= include "oracle.fullname" . }}
+{{- $_fullname := include "oracle.fullname" . }}
+{{- $_cacheName := include "oracle.cacheName" $ }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -44,8 +45,10 @@ spec:
             {{- if .Values.volumeMounts }}
             {{- toYaml .Values.volumeMounts | nindent 12 }}
             {{- end }}
-            - mountPath: {{- .Values.app.csm.cache_path | default "/cache" }}
-              name: {{ include "oracle.cacheName" $ }}
+            {{- if .Values.app.csm.cache_path }}
+            - mountPath: {{ .Values.app.csm.cache_path }}
+              name: {{ $_cacheName }}
+            {{- end }}
           {{- else }}
             {{- if .Values.volumeMounts }}
           volumeMounts:
@@ -106,20 +109,20 @@ spec:
       volumes:
         {{- toYaml .Values.volumes | nindent 8 }}
         {{- if .Values.cache.enabled }}
-        - name: {{ include "oracle.cacheName" $ }}
+        - name: {{ $_cacheName }}
           persistentVolumeClaim:
-            claimName: {{ include "oracle.cacheName" $ }}
+            claimName: {{ $_cacheName }}
         {{- else }}
-        - name: {{ include "oracle.cacheName" $ }}
+        - name: {{ $_cacheName }}
             emptyDir:
 │             medium: Memory 
 │             sizeLimit: 512Mi
         {{- end }}
       {{- else }}
-      {{- if .Values.volumes }}
+        {{- if .Values.volumes }}
       volumes:
         {{- toYaml .Values.volumes | nindent 8 }}
-      {{- end }}
+        {{- end }}
       {{- end }}
 {{- end }}
 {{- end }}
