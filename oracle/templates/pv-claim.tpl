@@ -5,7 +5,7 @@ metadata:
   name: {{ include "oracle.cacheName" . }}
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   storageClassName: {{ .Values.cache.storageClassName }}
   resources:
     requests:
