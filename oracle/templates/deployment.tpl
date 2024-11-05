@@ -11,6 +11,8 @@ metadata:
     {{- include "oracle.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       {{- include "oracle.labels" . | nindent 6 }}
