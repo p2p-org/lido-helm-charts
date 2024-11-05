@@ -5,7 +5,7 @@ metadata:
   name: {{ include "council.cacheName" . }}
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   storageClassName: {{ .Values.cache.storageClassName }}
   resources:
     requests:
