@@ -92,11 +92,13 @@ livenessProbe:
   httpGet:
     path: /health
     port: http
+  timeoutSeconds: 2
 
 readinessProbe:
   httpGet:
     path: /health
     port: http
+  timeoutSeconds: 2
 
 resources:
   limits:

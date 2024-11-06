@@ -83,18 +83,20 @@ startupProbe:
   httpGet:
     path: /health
     port: http
-  failureThreshold: 10
+  failureThreshold: 40
   periodSeconds: 60
 
 livenessProbe:
   httpGet:
     path: /health
     port: http
+  timeoutSeconds: 2
 
 readinessProbe:
   httpGet:
     path: /health
     port: http
+  timeoutSeconds: 2
 
 resources:
   limits:
