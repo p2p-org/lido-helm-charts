@@ -12,3 +12,9 @@ jobs:
   sca:
     uses: p2p-org/security-workflows/.github/workflows/sca.yaml@main
     secrets: inherit
+  security-quality-gate:
+    uses: p2p-org/security-workflows/.github/workflows/security-quality-gate.yaml@main
+    secrets: inherit
+    needs: [sast, sca]
+    with:
+      block: false
