@@ -2,5 +2,5 @@ apiVersion: v2
 name: oracle
 type: application
 version: 1.0.0
-appVersion: "5ab6398e68440c009dca372bac4de9a30c18b9afaa64e32d7a3ff4f7c6f0858c"
+appVersion: "deb8d3650c809bf1e96c329ed421439967ab02de49fb6c5d748963ab8c159568"
 description: Oracle daemon for Lido decentralized staking service

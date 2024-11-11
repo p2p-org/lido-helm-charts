@@ -82,7 +82,7 @@ replicaCount: 1
 
 image:
   repository: lidofinance/oracle@sha256
-  tag: "5ab6398e68440c009dca372bac4de9a30c18b9afaa64e32d7a3ff4f7c6f0858c"
+  tag: "deb8d3650c809bf1e96c329ed421439967ab02de49fb6c5d748963ab8c159568"
 
 imagePullSecrets: []
 nameOverride: ""
