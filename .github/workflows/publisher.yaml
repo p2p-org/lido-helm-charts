@@ -1,0 +1,31 @@
+name: Release publishing Helm charts with Github Pages
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        folder:
+          - council
+          - ejector
+          - kapi
+          - oracle
+    defaults:
+      run:
+        working-directory: "./${{ matrix.folder }}"
+    steps:
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/?}" >> $GITHUB_ENV
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Publish Helm charts
+        uses: p2p-org/lido-helm-charts@main
+        with:
+          chart_version: ${{ env.RELEASE_VERSION }}
