@@ -30,6 +30,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           helm_version: ${{ env.RELEASE_VERSION }}
-          charts_dir: ${{ matrix.project }}
+          charts_dir: "."
           branch: gh-pages
           target_dir: "helm"
