@@ -26,6 +26,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Publish Helm charts
-        uses: p2p-org/lido-helm-charts@main
+        uses: stefanprodan/helm-gh-pages@master
         with:
-          chart_version: ${{ env.RELEASE_VERSION }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          helm_version: ${{ env.RELEASE_VERSION }}
+          charts_dir: ${{ matrix.project }}
+          branch: gh-pages
+          target_dir: "helm"
