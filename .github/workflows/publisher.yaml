@@ -33,5 +33,3 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           # helm_version: ${{ env.RELEASE_VERSION }}
           charts_dir: .
-          # charts_url: https://p2p-org.github.io/lido-helm-charts/
-          # repository: lido-helm-charts
