@@ -2,10 +2,8 @@ name: Release publishing Helm charts with Github Pages
 
 on:
   push:
-    #tags:
-    #  - "v*"
-    branches:
-      - feat/debug-gh-pages
+    tags:
+      - "v*"
 
 jobs:
   release:
