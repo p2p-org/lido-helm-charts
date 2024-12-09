@@ -23,6 +23,9 @@ jobs:
     steps:
       #- name: Set env
       #  run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/?}" >> $GITHUB_ENV
+      - id: get_version
+        name: Get version
+        uses: jannemattila/get-version-from-tag@v4
 
       - name: Checkout code
         uses: actions/checkout@v2
@@ -31,6 +34,6 @@ jobs:
         uses: stefanprodan/helm-gh-pages@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          chart_version: ${{ env.RELEASE_VERSION }}
           charts_dir: .
           charts_url: https://p2p-org.github.io/lido-helm-charts/
+          chart_version: ${{ steps.get_version.outputs.version }}
