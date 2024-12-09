@@ -19,15 +19,16 @@ jobs:
       run:
         working-directory: "${{ matrix.folder }}"
     steps:
-      - name: Set env
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/?}" >> $GITHUB_ENV
-
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/?}" >> $GITHUB_ENV
 
       - name: Publish Helm charts
         uses: stefanprodan/helm-gh-pages@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          helm_version: ${{ env.RELEASE_VERSION }}
           charts_dir: .
+          charts_url: https://p2p-org.github.io/lido-helm-charts/
+          chart_version: ${{ env.RELEASE_VERSION }}
