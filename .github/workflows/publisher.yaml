@@ -5,14 +5,14 @@ on:
     # tags:
     #   - "v*"
     branches:
-      - feat/debug-gh-pages
+      - "feat/debug-gh-pages"
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: Set env
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/?}" >> $GITHUB_ENV
+      #- name: Set env
+      #  run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/?}" >> $GITHUB_ENV
 
       - name: Checkout code
         uses: actions/checkout@v2
@@ -21,7 +21,7 @@ jobs:
         uses: stefanprodan/helm-gh-pages@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          helm_version: ${{ env.RELEASE_VERSION }}
-          charts_dir: .
-          charts_url: https://p2p-org.github.io/lido-helm-charts/
-          repository: lido-helm-charts
+          # helm_version: ${{ env.RELEASE_VERSION }}
+          # charts_dir: .
+          # charts_url: https://p2p-org.github.io/lido-helm-charts/
+          # repository: lido-helm-charts
