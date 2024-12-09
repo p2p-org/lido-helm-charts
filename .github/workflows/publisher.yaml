@@ -15,9 +15,6 @@ jobs:
           - ejector
           - kapi
           - oracle
-    defaults:
-      run:
-        working-directory: "${{ matrix.folder }}"
     steps:
       - name: Set env
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/?}" >> $GITHUB_ENV
@@ -30,6 +27,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           helm_version: ${{ env.RELEASE_VERSION }}
-          charts_dir: "."
-          branch: gh-pages
-          target_dir: "helm"
+          charts_dir: ${{ matrix.folder }}
