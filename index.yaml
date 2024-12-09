@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  oracle:
+  - apiVersion: v2
+    appVersion: 84f114555a32058c5f8e42946c3caa6c3aabf0d516b61e7e00462d622d24b6cc
+    created: "2024-12-09T14:39:48.514109007Z"
+    description: Oracle daemon for Lido decentralized staking service
+    digest: 5b4b48d6c6639f5063498796aafd1307d022cd2735a6d0e06bbba174acc947b3
+    name: oracle
+    type: application
+    urls:
+    - https://p2p-org.github.io/lido-helm-charts/oracle-1.0.0.tgz
+    version: 1.0.0
+generated: "2024-12-09T14:39:48.512421222Z"
