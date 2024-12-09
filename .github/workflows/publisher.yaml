@@ -33,4 +33,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           charts_dir: .
           charts_url: https://p2p-org.github.io/lido-helm-charts/
-          chart_version: ${{ steps.get_version.outputs.version }}
+          chart_version: ${{ env.RELEASE_VERSION }}
