@@ -1,11 +1,32 @@
-# [Lido](https://github.com/lidofinance) services helm charts repo
+<p align="center">
+    <img width="400px" height=auto src="https://raw.githubusercontent.com/p2p-org/eigenlayer-operator/main/logo.png" />
+</p>
 
-Prepared helm charts for easy deploy of NO services. Unification of enviromen variables for EL and CL. Example of preset:
+<p align="center">
+    <a href="https://x.com/P2Pvalidator"><img src="https://badgen.net/badge/twitter/@P2Pvalidator/1DA1F2?icon&label" /></a>
+    <a href="https://github.com/p2p-org/lido-helm-charts"><img src="https://badgen.net/github/stars/p2p-org/avs-helm-charts?icon=github" /></a>
+    <a href="https://github.com/p2p-org/lido-helm-charts"><img src="https://badgen.net/github/forks/p2p-org/avs-helm-charts?icon=github" /></a>
+</p>
 
+# P2P Helm Charts for [Lido](https://github.com/lidofinance) Serices
+
+This repository offers a selection of carefully curated P2P Helm charts, which are stored in individual folders. Each chart has its own values.yaml file defining the configuration parameters.
+
+## Getting Started
+
+To use these Helm charts, you first need to add the P2P repository to your local Helm client:
+
+```bash
+helm repo add p2p-lido https://p2p-org.github.io/lido-helm-charts/
 ```
-  el_node_rpc: "http://localhost:8545/"
-  cl_node_rpc: "http://localhost:3500/"
+
+Once the repository is added, you can deploy a specific chart with the following command:
+
+```bash
+helm install my-release p2p-lido/<chart-name>
 ```
+
+**Note:** Make sure to replace `<chart-name>` with the name of the actual chart you intend to install.
 
 ## List of services
 
@@ -147,3 +168,9 @@ cache:
   storageClassName: "standard-rwo"
   size: "2Gi"
 ```
+
+## Contribute
+
+We welcome contributions to improve our Helm charts. If you discover any bugs, have issues, or ideas for enhancements, feel free to open an issue or submit a pull request. Every feedback, bug report, or feature request is invaluable to us, and we appreciate the community's involvement in making P2P's Helm charts better.
+
+Feel free to explore the repository and experiment with the Helm charts to suit your specific needs. P2P's Helm charts aim to make application deployment on Kubernetes an effortless experience.
