@@ -8,7 +8,7 @@
     <a href="https://github.com/p2p-org/lido-helm-charts"><img src="https://badgen.net/github/forks/p2p-org/avs-helm-charts?icon=github" /></a>
 </p>
 
-# P2P Helm Charts for [Lido](https://github.com/lidofinance) Serices
+# P2P Helm Charts for [Lido](https://github.com/lidofinance) Services
 
 This repository offers a selection of carefully curated P2P Helm charts, which are stored in individual folders. Each chart has its own values.yaml file defining the configuration parameters.
 
