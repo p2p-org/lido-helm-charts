@@ -30,8 +30,7 @@ app:
       "0x19b1BEbe4773fEC2496FEf8b81a9c175A823844B"
     ]
   blocks_preload: "100000"
-  blocks_loop: "64"
-  job_interval: "384000"
+  job_interval: "12000"
   http_port: "8989"
 
   run_metrics: "true"
@@ -48,7 +47,7 @@ replicaCount: 1
 
 image:
   repository: lidofinance/validator-ejector@sha256
-  tag: "6d80a57895e0a4d577dc78b187d2bbc62742259ccc1efcadff16685bda7a817e"
+  tag: "f5419aca55f9ff1d3f840edf58bab5c0bf67d74e941286fd79e2a4041a1a1c94"
 
 imagePullSecrets: []
 nameOverride: ""
