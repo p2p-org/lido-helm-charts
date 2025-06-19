@@ -7,15 +7,15 @@ app:
   cl_node_rpc: "http://localhost:3500/"
 
   # mainnet: 0xC1d0b3DE6792Bf6b4b37EccdcC24e45978Cfd2Eb
-  # goerli:  0x1eDf09b5023DC86737b59dE68a8130De878984f5
-  # holešky: 0x28FAB2059C713A7F9D8c86Db49f9bb0e96Af1ef8
-  locator_address: "0x28FAB2059C713A7F9D8c86Db49f9bb0e96Af1ef8"
+  # hoodi:   0xe2EF9536DAAAEBFf5b1c130957AB3E80056b06D8
+  locator_address: "0xe2EF9536DAAAEBFf5b1c130957AB3E80056b06D8"
   staking_module_id: "1"
   operator_id: "0"
-  messages_location: ""
   ## use that you need
+  # messages_location: ""
   # messages_password: ""
   # messages_password_file: ""
+  # validator_exit_webhook: ""
 
   oracle_addresses_allowlist: >
     [
@@ -82,28 +82,18 @@ startupProbe:
   httpGet:
     path: /health
     port: http
-  failureThreshold: 40
-  periodSeconds: 60
 
 livenessProbe:
   httpGet:
     path: /health
     port: http
-  timeoutSeconds: 2
 
 readinessProbe:
   httpGet:
     path: /health
     port: http
-  timeoutSeconds: 2
 
-resources:
-  limits:
-    memory: 2048Mi
-  requests:
-    cpu: 2
-    memory: 1024Mi
-
+resources: {}
 podAnnotations: {}
 nodeSelector: {}
 tolerations: []
