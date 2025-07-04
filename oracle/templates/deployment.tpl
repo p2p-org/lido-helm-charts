@@ -6,7 +6,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "oracle.fullname" . }}
+  name: {{ $_fullname }}
   labels:
     {{- include "oracle.labels" . | nindent 4 }}
 spec:
