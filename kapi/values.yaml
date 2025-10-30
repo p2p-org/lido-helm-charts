@@ -71,6 +71,8 @@ securityContext:
   # privileged: false
   readOnlyRootFilesystem: false
 
+extraEnvFrom: []
+
 serviceAnnotations: {}
 
 service:

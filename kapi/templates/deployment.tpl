@@ -45,23 +45,23 @@ spec:
               name: tmp
               subPath: tmp
           env:
-          {{- range $key, $value := .Values.app }}
-            - name: {{ $key | upper }}
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ include "kapi.fullname" $ }}
-                  key: {{ $key | upper }}
-          {{- end }}
             - name: PROVIDERS_URLS
               valueFrom:
                 configMapKeyRef:
-                  name: {{ include "kapi.fullname" $ }}
+                  name: {{ include "kapi.fullname" . }}
                   key: EL_NODE_RPC
             - name: CL_API_URLS
               valueFrom:
                 configMapKeyRef:
-                  name: {{ include "kapi.fullname" $ }}
+                  name: {{ include "kapi.fullname" . }}
                   key: CL_NODE_RPC
+          envFrom:
+            - configMapRef:
+                name: {{ include "kapi.fullname" . }}
+                optional: false
+          {{- if .Values.extraEnvFrom }}
+            {{- toYaml .Values.extraEnvFrom | nindent 12 }}
+          {{- end }}
           ports:
             - name:  http
               containerPort: {{ .Values.service.targetPort }}

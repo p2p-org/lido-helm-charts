@@ -51,18 +51,18 @@ spec:
               name: council-cache
             {{- end }}
           env:
-          {{- range $key, $value := .Values.app }}
-            - name: {{ $key | upper }}
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ include "council.fullname" $ }}
-                  key: {{ $key | upper }}
-          {{- end }}
             - name: RPC_URL
               valueFrom:
                 configMapKeyRef:
-                  name: {{ include "council.fullname" $ }}
+                  name: {{ include "council.fullname" . }}
                   key: EL_NODE_RPC
+          envFrom:
+            - configMapRef:
+                name: {{ include "council.fullname" . }}
+                optional: false
+          {{- if .Values.extraEnvFrom }}
+            {{- toYaml .Values.extraEnvFrom | nindent 12 }}
+          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

@@ -48,13 +48,6 @@ spec:
               name: tmp
               subPath: tmp
           env:
-          {{- range $key, $value := .Values.app }}
-            - name: {{ $key | upper }}
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ include "ejector.fullname" $ }}
-                  key: {{ $key | upper }}
-          {{- end }}
             - name: EXECUTION_NODE
               valueFrom:
                 configMapKeyRef:
@@ -65,6 +58,13 @@ spec:
                 configMapKeyRef:
                   name: {{ include "ejector.fullname" $ }}
                   key: CL_NODE_RPC
+          envFrom:
+            - configMapRef:
+                name: {{ include "ejector.fullname" . }}
+                optional: false
+          {{- if .Values.extraEnvFrom }}
+            {{- toYaml .Values.extraEnvFrom | nindent 12 }}
+          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
