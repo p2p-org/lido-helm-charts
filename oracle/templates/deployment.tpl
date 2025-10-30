@@ -58,13 +58,6 @@ spec:
             {{- end }}
           {{- end }}
           env:
-          {{- range $key, $value := index .Values.app .Kind }}
-            - name: {{ $key | upper }}
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ $_fullname }}
-                  key: {{ $key | upper }}
-          {{- end }}
             - name: EXECUTION_CLIENT_URI
               valueFrom:
                 configMapKeyRef:
@@ -75,6 +68,13 @@ spec:
                 configMapKeyRef:
                   name: {{ $_fullname }}
                   key: CL_NODE_RPC
+          envFrom:
+            - configMapRef:
+                name: {{ $_fullname }}
+                optional: false
+          {{- if .Values.extraEnvFrom }}
+            {{- toYaml .Values.extraEnvFrom | nindent 12 }}
+          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port | default "9000" }}

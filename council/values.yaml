@@ -55,6 +55,8 @@ securityContext:
   privileged: false
   readOnlyRootFilesystem: false
 
+extraEnvFrom: []
+
 service:
   type: ClusterIP
   port: 3000

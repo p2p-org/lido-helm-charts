@@ -67,6 +67,8 @@ securityContext:
       - ALL
   readOnlyRootFilesystem: false
 
+extraEnvFrom: []
+
 serviceAnnotations: {}
 serviceAccount:
   create: false
