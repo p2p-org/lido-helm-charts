@@ -30,7 +30,7 @@ app:
 replicaCount: 1
 
 image:
-  repository: lidofinance/lido-council-daemon@sha256
+  repository: docker.io/lidofinance/lido-council-daemon@sha256
   tag: "2041378eb99b776c4966a51535b27251dd56abc8d8317e5b4550c817fb33613b"
 
 imagePullSecrets: []

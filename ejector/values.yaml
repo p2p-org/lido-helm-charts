@@ -46,7 +46,7 @@ app:
 replicaCount: 1
 
 image:
-  repository: lidofinance/validator-ejector
+  repository: docker.io/lidofinance/validator-ejector
   tag: ""
 
 imagePullSecrets: []

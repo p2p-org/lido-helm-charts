@@ -82,7 +82,7 @@ replicaCount: 1
 
 # Version: 4.1.1
 image:
-  repository: lidofinance/oracle@sha256
+  repository: docker.io/lidofinance/oracle@sha256
   tag: "41a719e64bde48fdba3877affb72bf03a4ee6f3e0dd3dbcf2b713398b3a72312"
 
 imagePullSecrets: []
