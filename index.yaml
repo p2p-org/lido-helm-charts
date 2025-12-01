@@ -3,10 +3,10 @@ entries:
   council:
   - apiVersion: v2
     appVersion: 35b6807baf1b509b48e7f0ef2f85542c259ed4e48a0a5d469dcc4b388fea680e
-    created: "2025-12-01T14:51:54.602480488Z"
+    created: "2025-12-01T14:51:56.873597921Z"
     description: The Lido Council Daemon monitors deposit contract keys and compares
       them to Lido's unused keys.
-    digest: c91526d834b10ced28889785f551665575537967997b924e1bb7281fdcbcd83a
+    digest: d68cd811975b3ec4853e60fcf09d1d5a2a07b3b2d55b832c973cd2a876fc45b9
     name: council
     type: application
     urls:
@@ -114,10 +114,10 @@ entries:
   ejector:
   - apiVersion: v2
     appVersion: 1.9.0
-    created: "2025-12-01T14:51:54.603727671Z"
+    created: "2025-12-01T14:51:56.874029257Z"
     description: Daemon service which loads LidoOracle events for validator exits
       and sends out exit messages when necessary.
-    digest: 4d0a9f3e663c5ec4a9bd50696e442d3fd29cd424acdbd7d2caae56dae4b7c70c
+    digest: d6792f18fc1922f7e9e3ab4af545dbb4191f3c6eab68faeff1b1cc95de335acd
     name: ejector
     type: application
     urls:
@@ -225,9 +225,9 @@ entries:
   kapi:
   - apiVersion: v2
     appVersion: 90cedb5e0ec768eaa572a795fdf60df9739c78e9315a935f981c6408448155ae
-    created: "2025-12-01T14:51:54.604258032Z"
+    created: "2025-12-01T14:51:56.874451497Z"
     description: Lido keys and validators HTTP API
-    digest: 7acd71cd756545750d47cb120b1a42586619e8320db6ea6f302eb17a2cc4c396
+    digest: c7db0edb4d8b34d523dfe4f780cc24f9e307229b5187452924f30de5c755fef1
     name: kapi
     type: application
     urls:
@@ -326,9 +326,9 @@ entries:
   oracle:
   - apiVersion: v2
     appVersion: 41a719e64bde48fdba3877affb72bf03a4ee6f3e0dd3dbcf2b713398b3a72312
-    created: "2025-12-01T14:51:54.604755982Z"
+    created: "2025-12-01T14:51:56.874931895Z"
     description: Oracle daemon for Lido decentralized staking service
-    digest: bfcab2a8de1aa4c04be1c42b416e7aaa0d75a6c5c1af18301fd63f5e05c22fb8
+    digest: 76fb7cf50469a5689663eb6c7a85a7433032574c157cfc8fec75fe87406761f4
     name: oracle
     type: application
     urls:
@@ -424,4 +424,4 @@ entries:
     urls:
     - https://p2p-org.github.io/lido-helm-charts/oracle-1.0.0-alpha.37.tgz
     version: 1.0.0-alpha.37
-generated: "2025-12-01T14:51:54.601894273Z"
+generated: "2025-12-01T14:51:56.873044166Z"
