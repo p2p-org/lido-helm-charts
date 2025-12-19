@@ -109,16 +109,18 @@ spec:
       {{- end }}
       {{- if eq .Kind "csm" }}
       volumes:
-        {{- toYaml .Values.volumes | nindent 8 }}
+        {{- with .Values.volumes }}
+           {{- toYaml . | nindent 8 }}
+        {{- end }}
         {{- if .Values.cache.enabled }}
         - name: {{ $_cacheName }}
           persistentVolumeClaim:
             claimName: {{ $_cacheName }}
         {{- else }}
         - name: {{ $_cacheName }}
-            emptyDir:
-│             medium: Memory 
-│             sizeLimit: 512Mi
+          emptyDir:
+            medium: Memory 
+            sizeLimit: 512Mi
         {{- end }}
       {{- else }}
         {{- if .Values.volumes }}
