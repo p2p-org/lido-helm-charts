@@ -68,12 +68,15 @@ spec:
                 configMapKeyRef:
                   name: {{ $_fullname }}
                   key: CL_NODE_RPC
+          {{- with .Values.extraEnv }}
+              {{- toYaml . | nindent 12 }}
+          {{- end }}
           envFrom:
             - configMapRef:
                 name: {{ $_fullname }}
                 optional: false
-          {{- if .Values.extraEnvFrom }}
-            {{- toYaml .Values.extraEnvFrom | nindent 12 }}
+          {{- with .Values.extraEnvFrom }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           ports:
             - name: http
