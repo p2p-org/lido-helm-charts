@@ -56,12 +56,15 @@ spec:
                 configMapKeyRef:
                   name: {{ include "council.fullname" . }}
                   key: EL_NODE_RPC
+          {{- with .Values.extraEnv }}
+              {{- toYaml . | nindent 12 }}
+          {{- end }}
           envFrom:
             - configMapRef:
                 name: {{ include "council.fullname" . }}
                 optional: false
-          {{- if .Values.extraEnvFrom }}
-            {{- toYaml .Values.extraEnvFrom | nindent 12 }}
+          {{- with .Values.extraEnvFrom }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           ports:
             - name: http

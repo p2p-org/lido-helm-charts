@@ -67,6 +67,7 @@ securityContext:
       - ALL
   readOnlyRootFilesystem: false
 
+extraEnv: []
 extraEnvFrom: []
 
 serviceAnnotations: {}

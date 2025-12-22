@@ -58,12 +58,15 @@ spec:
                 configMapKeyRef:
                   name: {{ include "ejector.fullname" $ }}
                   key: CL_NODE_RPC
+          {{- with .Values.extraEnv }}
+              {{- toYaml . | nindent 12 }}
+          {{- end }}
           envFrom:
             - configMapRef:
                 name: {{ include "ejector.fullname" . }}
                 optional: false
-          {{- if .Values.extraEnvFrom }}
-            {{- toYaml .Values.extraEnvFrom | nindent 12 }}
+          {{- with .Values.extraEnvFrom }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           ports:
             - name: http
