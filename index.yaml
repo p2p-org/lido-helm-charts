@@ -3,6 +3,17 @@ entries:
   council:
   - apiVersion: v2
     appVersion: 35b6807baf1b509b48e7f0ef2f85542c259ed4e48a0a5d469dcc4b388fea680e
+    created: "2026-04-27T18:50:01.546764561Z"
+    description: The Lido Council Daemon monitors deposit contract keys and compares
+      them to Lido's unused keys.
+    digest: 21221ca64a572684332cfaad96a4d336ee4f6e4f6d7e5747806338f87cb427f5
+    name: council
+    type: application
+    urls:
+    - https://p2p-org.github.io/lido-helm-charts/council-1.3.2.tgz
+    version: 1.3.2
+  - apiVersion: v2
+    appVersion: 35b6807baf1b509b48e7f0ef2f85542c259ed4e48a0a5d469dcc4b388fea680e
     created: "2026-04-27T17:01:39.808539526Z"
     description: The Lido Council Daemon monitors deposit contract keys and compares
       them to Lido's unused keys.
@@ -145,6 +156,17 @@ entries:
     - https://p2p-org.github.io/lido-helm-charts/council-1.0.0-alpha.37.tgz
     version: 1.0.0-alpha.37
   ejector:
+  - apiVersion: v2
+    appVersion: 1.9.0
+    created: "2026-04-27T18:50:01.547222863Z"
+    description: Daemon service which loads LidoOracle events for validator exits
+      and sends out exit messages when necessary.
+    digest: e30162f40f553d39f6aabaea2c90927767ac4432a25694bb4be2a4c3c7159d56
+    name: ejector
+    type: application
+    urls:
+    - https://p2p-org.github.io/lido-helm-charts/ejector-1.3.2.tgz
+    version: 1.3.2
   - apiVersion: v2
     appVersion: 1.9.0
     created: "2026-04-27T17:01:39.809010877Z"
@@ -291,6 +313,16 @@ entries:
   kapi:
   - apiVersion: v2
     appVersion: 90cedb5e0ec768eaa572a795fdf60df9739c78e9315a935f981c6408448155ae
+    created: "2026-04-27T18:50:01.547662651Z"
+    description: Lido keys and validators HTTP API
+    digest: 4aff801aacddbdbf9b8d96aa140fb4b47c78c66123f8b01ba1e31b19beb1bc0a
+    name: kapi
+    type: application
+    urls:
+    - https://p2p-org.github.io/lido-helm-charts/kapi-1.3.2.tgz
+    version: 1.3.2
+  - apiVersion: v2
+    appVersion: 90cedb5e0ec768eaa572a795fdf60df9739c78e9315a935f981c6408448155ae
     created: "2026-04-27T17:01:39.809439579Z"
     description: Lido keys and validators HTTP API
     digest: 2be4a68e4675529645316e2df6dbe326a52fbd1f48f1548ab9b1f3fa726ee49e
@@ -422,6 +454,16 @@ entries:
   oracle:
   - apiVersion: v2
     appVersion: 0851cd003b4c9a13bd696dcb7892b3afa20e31f2d02ffd7e262cf6c1b874ad22
+    created: "2026-04-27T18:50:01.548326836Z"
+    description: Oracle daemon for Lido decentralized staking service
+    digest: fa28aedbaf6b9b5b927557bede87943e35e88eb76ed6b2554caa69b09acbfeb4
+    name: oracle
+    type: application
+    urls:
+    - https://p2p-org.github.io/lido-helm-charts/oracle-1.3.2.tgz
+    version: 1.3.2
+  - apiVersion: v2
+    appVersion: 0851cd003b4c9a13bd696dcb7892b3afa20e31f2d02ffd7e262cf6c1b874ad22
     created: "2026-04-27T17:01:39.810153343Z"
     description: Oracle daemon for Lido decentralized staking service
     digest: 61a5230f60d8dc91edac5a448aca4e121d804125e76e8505266a29d59416076b
@@ -550,4 +592,4 @@ entries:
     urls:
     - https://p2p-org.github.io/lido-helm-charts/oracle-1.0.0-alpha.37.tgz
     version: 1.0.0-alpha.37
-generated: "2026-04-27T17:01:39.807971595Z"
+generated: "2026-04-27T18:50:01.546219047Z"
