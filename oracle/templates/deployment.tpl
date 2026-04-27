@@ -68,6 +68,10 @@ spec:
                 configMapKeyRef:
                   name: {{ $_fullname }}
                   key: CL_NODE_RPC
+          {{- if and $.Values.performanceSidecars.enabled (has .Kind $.Values.performanceSidecars.kinds) }}
+            - name: PERFORMANCE_COLLECTOR_URI
+              value: "http://{{ include "oracle.fullname" $ }}-performance-web:9020/"
+          {{- end }}
           {{- with .Values.extraEnv }}
               {{- toYaml . | nindent 12 }}
           {{- end }}

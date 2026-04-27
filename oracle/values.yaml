@@ -6,6 +6,7 @@ kinds:
   - accounting
   - ejector
   - csm
+  - cm
 
 app:
   #  Accounting Oracle (AO)
@@ -28,6 +29,9 @@ app:
     # add secrets variables to your external config
     # member_priv_key: ""
     # member_priv_key_file: ""
+    # telemetry_data_bus_rpc: ""
+    # filebase_ipfs_host: ""
+    # filebase_ipfs_token: ""
 
   #  Validator Exit Bus Oracle (VEBO)
   ejector:
@@ -48,6 +52,9 @@ app:
     # add secrets variables to your external config
     # member_priv_key: ""
     # member_priv_key_file: ""
+    # telemetry_data_bus_rpc: ""
+    # filebase_ipfs_host: ""
+    # filebase_ipfs_token: ""
 
   # Community Staking Module (CSM)
   csm:
@@ -68,22 +75,44 @@ app:
 
     cache_path: "/cache"
 
-    # holešky: 0x4562c3e63c2e586cD1651B958C22F88135aCAd4f
-    csm_module_address: "0x4562c3e63c2e586cD1651B958C22F88135aCAd4f"
+    # hoodi: 0x79CEf36D84743222f37765204Bec41E92a93E59d
+    staking_module_address: "0x79CEf36D84743222f37765204Bec41E92a93E59d"
     # add secrets variables to your external config
     # member_priv_key: ""
     # member_priv_key_file: ""
-    # pinata_jwt:     "<jwt token>"
-    # gw3_access_key: "<api key>"
-    # gw3_secret_key: "<api secret>"
+    # telemetry_data_bus_rpc: ""
+    # filebase_ipfs_host: ""
+    # filebase_ipfs_token: ""
+
+  # Curated Module Oracle (CM)
+  cm:
+    el_node_rpc: "http://localhost:8545/"
+    cl_node_rpc: "http://localhost:3500/"
+
+    prometheus_port: "9000"
+    healthcheck_server_port: "9010"
+    keys_api_uri: "http://kapi"
+
+    # mainnet: 0xC1d0b3DE6792Bf6b4b37EccdcC24e45978Cfd2Eb
+    # hoodi: 0xe2EF9536DAAAEBFf5b1c130957AB3E80056b06D8
+    lido_locator_address: "0xe2EF9536DAAAEBFf5b1c130957AB3E80056b06D8"
+
+    # hoodi: 0x87EB69Ae51317405FD285efD2326a4a11f6173b9
+    staking_module_address: "0x87EB69Ae51317405FD285efD2326a4a11f6173b9"
+    # add secrets variables to your external config
+    # member_priv_key: ""
+    # member_priv_key_file: ""
+    # telemetry_data_bus_rpc: ""
+    # filebase_ipfs_host: ""
+    # filebase_ipfs_token: ""
 
 # Kubernetes configuration
 replicaCount: 1
 
-# Version: 4.1.1
+# Version: 8
 image:
   repository: docker.io/lidofinance/oracle@sha256
-  tag: "41a719e64bde48fdba3877affb72bf03a4ee6f3e0dd3dbcf2b713398b3a72312"
+  tag: "0851cd003b4c9a13bd696dcb7892b3afa20e31f2d02ffd7e262cf6c1b874ad22"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -147,10 +176,51 @@ startupProbe:
 
 resources:
   limits:
-    memory: 6144Mi
+    memory: 8192Mi
   requests:
     cpu: 1
-    memory: 4096Mi
+    memory: 8192Mi
+
+# performance-collector and performance-web sidecars for CSM/CM oracle pods
+performanceSidecars:
+  enabled: false
+  kinds:
+    - cm
+    - csm
+
+  collector:
+    consensus_client_uri: "http://localhost:3500/"
+    performance_db_host: "postgres"
+    performance_db_port: "5432"
+    performance_db_name: "performance"
+    performance_db_user: "performance"
+    # performance_db_password: ""
+    performance_db_pool_size: "10"
+    performance_db_max_overflow: "20"
+    performance_db_pool_recycle_seconds: "3600"
+    max_cycle_lifetime_in_seconds: "60000"
+    resources:
+      limits:
+        memory: 8192Mi
+      requests:
+        cpu: 2
+        memory: 8192Mi
+
+  web:
+    performance_db_host: "postgres"
+    performance_db_port: "5432"
+    performance_db_name: "performance"
+    performance_db_user: "performance"
+    # performance_db_password: ""
+    performance_db_pool_size: "10"
+    performance_db_max_overflow: "20"
+    performance_db_pool_recycle_seconds: "3600"
+    resources:
+      limits:
+        memory: 2048Mi
+      requests:
+        cpu: 1
+        memory: 2048Mi
 
 volumes: []
 nodeSelector: {}
