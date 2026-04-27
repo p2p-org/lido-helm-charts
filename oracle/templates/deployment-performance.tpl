@@ -62,9 +62,8 @@ spec:
               containerPort: 9010
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /healthcheck
-              port: health
+            tcpSocket:
+              port: 9000
             failureThreshold: 3
             initialDelaySeconds: 5
             periodSeconds: 10
